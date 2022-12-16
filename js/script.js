@@ -1,0 +1,1 @@
+// Raccolgo tutti gli elementi del DOM
