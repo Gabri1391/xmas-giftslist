@@ -94,6 +94,7 @@ return `
                 <p>${gift.description}</p>
             </div>
             <div class="gift-price">${formatAmount(gift.price)}</div>
-            <div class="gift-button">❌</div>
+            <div class="gift-button" data-index="${i}">❌</div>
+            
         </li>`;
 };
