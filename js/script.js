@@ -77,6 +77,9 @@ function renderList(){
 
         // Lo aggancio alla lista nella pagina prendendo l'elemento nell'HTML
         giftsList.innerHTML += giftElement;
+
+        //Renderizzo il bottone X con una funzione per eliminare il regalo
+        setDeleteButtons();
     }
 }
 
@@ -89,7 +92,7 @@ function createListElement(i){
 
 return `
         <li class="gift-item mb-3">
-            <div class="gift-info">
+            <div class="gift-info text-white">
                 <h3>${gift.name}</h3>
                 <p>${gift.description}</p>
             </div>
@@ -98,3 +101,33 @@ return `
             
         </li>`;
 };
+
+//Funzione per settare i bottoni
+function setDeleteButtons(){
+    //Recupero gli elementi
+    const deleteButtons = document.querySelectorAll('.gift-button');
+
+    for(let i = 0; i < deleteButtons.length; i++){
+        const deleteButton = deleteButtons[i];
+
+        deleteButton.addEventListener('click', function(){
+            //Individuo l'index corrispondente
+            const index = deleteButton.dataset.index;
+
+            //Rimuovo dalla lista il regalo con quell'index
+            removeGift(index);
+        })
+    }
+}
+
+//Funzione per rimuovere il regalo
+function removeGift(index){
+    //Rimuovo dall'array
+    gifts.splice(index,1);
+
+    //Ricalcolo il totale della spesa
+    getTotal();
+
+    //Rirenderizzare la lista
+    renderList();
+}
